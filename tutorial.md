@@ -16,6 +16,7 @@ Una API es una herramienta para interactuar con proveedores de Internet. Se pued
 A menudo los proveedores de contenido ponen restricciones al uso de API por cuestiones de seguridad. Para ello, solicitan una clave para poder acceder al servicio de la API. También suelen existir restricciones para el número de veces que puedes utilizar una API por hora.
 
 # ¿Por qué la API de la BBC?
+![bbcapi](bbcapi.png)
 Para este tutorial vamos a utilizar *BBC linked data API*. Linked data hace referencia a las relaciones entre concreptos presentes en el contenido. Por ejemplo, un artículo que mencione a Barack Obama será considerao por el servicio como un artículo sobre Obama. 
 Esta API se llama "the Juicer" y es una de las APIs más sencillas de utilizar. Además tiene una aplicación periodística y puede ser utilizada para investigación. Ha sido desarrollado por BBC News Labs:
 
@@ -151,7 +152,9 @@ Hasta ahora hemos probado a hacer búsquedas sobre Madrid (`q=Madrid`) con la cl
 
 # De aquí en adelante...
 Este es un tutorial de iniciaición con la API de la BBC, pero ¿qué puedes crear a partir de ahora?
-Un ejemplo es este [agregador de noticias](https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm?hl=en) creado para rastrear las intervenciones de los principales candidatos durante la campaña electoral del 20-D. Nos fue útil para rastrear todas las promesas que incluimos en [El Prometómetro](http://www.elconfidencial.com/elecciones-generales/2015-12-01/prometometro-promesas-elecciones-generales-20d_1107039/).
+Un ejemplo es este [agregador de noticias](https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm?hl=en) creado para rastrear las intervenciones de los principales candidatos durante la campaña electoral del 20-D. 
+![art_bbcjuicer](art_publ_bbcjuicer.png)
+Nos fue útil para rastrear todas las promesas que incluimos en [El Prometómetro](http://www.elconfidencial.com/elecciones-generales/2015-12-01/prometometro-promesas-elecciones-generales-20d_1107039/). Puedes leer más info en el blog de [BBC News Labs](http://bbcnewslabs.co.uk/2015/12/15/eclabs-and-juicer/)
 
 Échale imaginación. Ya sabes, para este tipo de proyectos lo mejor es echarle un vistazo a [la documentación](http://docs.bbcnewslabs.co.uk/Juicer-2.html)!
 
@@ -179,3 +182,7 @@ Utilizar el parámetro `published_before` en la URL como se menciona en la [API 
 ```js
 var query = "http://juicer.api.bbci.co.uk/articles?q=London&published_before=2014-01-01T00:00:00.000Z&apikey=" + apikey;
 ```
+
+Otra opción mucho más sencilla, pero limitada, es ésta [interfaz](http://wat.bbcnewslabs.co.uk/) que ha creado BBC News Labs para acceder a la base de datos de The Juicer.
+
+![juicer_interfaz](bbcjuicer_interfaz.png)
