@@ -1,3 +1,4 @@
+## II sesión [Journocoders Madrid](https://twitter.com/journocodersmad) (enero)
 ## Tutorial sobre la API The Juicer, desarrollada por BBC News Labs
 
 Lugar: *Medialab Prado - Cantina*
