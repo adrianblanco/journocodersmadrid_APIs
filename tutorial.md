@@ -1,14 +1,13 @@
 # ¿Qué es una API?
-*Those already familiar with APIs may want to skip straight to the [BBC API introduction](https://github.com/basilesimon/using-an-api-tutorial/blob/master/tutorial.md#what-you-will-find-in-the-bbc-api) and [further reading](https://github.com/basilesimon/using-an-api-tutorial/blob/master/tutorial.md#beyond-this-tutorial).*
 
 Es posible que hayas utilizado muchas APIs sin saber incluso que lo hacías:
 
 * ¿has pinchado alguna vez en Twitter en la opción de "Compartir"?
 * ¿has abierto Facebook o Twitter?
 
-Entonces has utilizado una API.
+Entonces has utilizado una [API](https://es.wikipedia.org/wiki/Interfaz_de_programación_de_aplicaciones). Más info en [Mozilla] (https://developer.mozilla.org/en-US/docs/Web/Reference/API)
 
-Una APIs es una herramienta para interactuar con proveedores de Internet. Se pueden utilizar para: Se usan para:
+Una API es una herramienta para interactuar con proveedores de Internet. Se pueden utilizar para: Se usan para:
 
 * **recopilar datos** de un proveedor (esto es lo que ocurre cuando lees tuits en tu timeline),
 * o **enviar datos** a un servicio (cuando envías un tuit desde una aplicación externa a twitter)
@@ -22,38 +21,32 @@ Esta API se llama "the Juicer" y es una de las APIs más sencillas de utilizar. 
 
 ![juicer](juicer.png)
 
-* The Juicer scrapes noticias de la BBC y de más de 150 medios y los indexa en una base de datos guardando titular, autor, fuente, imágenes...
-* It then performs entity extraction: in the articles' bodies, it will recognises some concepts ("David Cameron", "smoking", "Leicester", "Apple Inc"...), which can be people, places, organisations, or intangibles.
-* It will match these concepts with a unified concepts base containing information about these concepts, thus providing some consistency.
-* Finally, it will draw relationships between the concepts: how often they co-occur together, with which other concepts they appear, their frequency over time...
+* The Juicer extrae noticias de la BBC y de más de 150 medios y los indexa en una base de datos guardando titular, autor, fuente, imágenes...
+* Además identifica algunos conceptos de las noticias como pueden ser sus diferentes partes, la fecha en la que fue publicada...
+* Esto permite obtener una información concreta y delimitada que puede ser utilizada para crear aplicaciones, obtener info filtrada o una información concreta.
 
-Every step of this process can be interrogated by talking to the API directly. You might only be interested by reading articles about the geographic zone 15 miles around your current GPS position, for example. Or you might just want to know what are the other politicians co-occurring with Nigel Farage in the last two months, and in which proportions. Or, you might be curious to know who is mentioned the most alongside Adolf Hitler in news articles.
-
-Now, it might seem all a bit silly and broad, but you can use these APIs for quite nice purposes. If you have downloaded the new BBC News smartphone app (available on Android and iOS), you probably noticed that you can *follow* topics, such as your constituency or geographical area, major news developments ( *Islamic State crisis*, *counter-terrorism*, *Jeremy Clarkson*, *Cymru*, *Election 2015*...). These pages are aggregated automatically by the APIs (and probably involve a certain amount of human curation, but I must admit I don't know a whole lot about that).
+Pero, ¿cómo funciona?
 
 # Hacer peticiones
 Para obtener los datos de los que hablamos, tenemos que realizar una petición. Ésta tiene la forma de una url a la que incluimos las variables por las que queremos filtrar y una clave de acceso para conectarnos a la API.
 
-**La clave para el evento es `YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi`.**
+**La clave para este evento es `YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi`. Es temporal, en unos días dejará de funcionar. Sólo puede ser utilizada para tutoriales o investigaciones.**
 
-### Example queries
+### Posibles peticiones
 Try the following queries by opening the URLs in your browser (you'll need to paste in the API key at the very end):
-* All sources being juiced - http://juicer.api.bbci.co.uk/sources?apikey=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
-* Scope to only BBC content - http://juicer.api.bbci.co.uk/articles?sources[]=1&apikey=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
-* Search for the word "London" in all BBC sources - http://juicer.api.bbci.co.uk/articles?q=London&sources[]=1&apikey=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
+* Todas las fuentes que analiza la API de la BBC - http://juicer.api.bbci.co.uk/sources?api_key=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
+* Busca sólo contenido de la BBC - http://juicer.api.bbci.co.uk/articles?sources[]=1&api_key=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
+* Busca la palabra "London" en las noticias de la BBC - http://juicer.api.bbci.co.uk/articles?q=London&sources[]=1&api_key=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
 * Search for the word "London" in all BBC sources, faceted (filtered) by the concept "David Cameron" - http://juicer.api.bbci.co.uk/articles?q=London&sources[]=1&facets[]=http://dbpedia.org/resource/David_Cameron&apikey=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
 * Search for the word "London" in all BBC sources, faceted (filtered) by the concept "David Cameron", and show results in reverse chronological order - http://juicer.api.bbci.co.uk/articles?q=London&sources[]=1&facets[]=http://dbpedia.org/resource/David_Cameron&recent_first=true&apikey=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
-* An article from the Juicer - http://juicer.api.bbci.co.uk/articles/4c3cfc0b24ba06bd204c6a24bd14e43bb006b0ea?apikey=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
+* An article from the Juicer - http://juicer.api.bbci.co.uk/articles/4c3cfc0b24ba06bd204c6a24bd14e43bb006b0ea?api_key=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
 
- 
-# Getting a response
-Una vez hayas realizado tu petición, el servidor responderá a ell.a 
+# Obtener una respuesta
+Una vez hayas realizado tu petición, el servidor responderá a ella. 
 After you've sent your query, the server will reply in a certain format. One of the most common is JSON (which stands for *JavaScript Obect Notation*). This format is very standard and easy to parse in any language, and though it can be a bit bigger than flat CSV datasets, it is quite good at expressing relationships and hierarchy. JSON is also the format returned by the Juicer, and thus the one that we will use for this tutorial.
 
-# Exploiting the received data
-Okay, so now that we're comfortable with the Juicer API, it's time to actually put the data you've queried to good use. One of the most simple and frequent thinkg you'll do with data obtained is to throw some bits of it into a web page. 
-
-This is surprisingly easy with some Javascript (actually, *jQuery*, but sssh, don't wake up the trolls).
+# Cómo explotar los datos recibidos
+Ahora que tenemos una idea de cómo funciona Juicer API es hora de utilizar esos datos. Una de las formas más sencillas para visualizarlos es crear una página web.
 
 En este taller cubriremos los siguientes ejercicios:
 * Realizar una petición sobre los artículos más recientes que versen sobre *Madrid*.
@@ -85,7 +78,7 @@ En este esqueleto incluimos las etiquetas base de HTML y enlazamos a jQuery, una
     </html>
 ```
 
-#### Making a request
+#### Realizar una petición
 To cut to the chase: jQuery es la librería que utilizaremos para obtener los datos estructurados en formato JSON de la API sin tener que parsearlos o diseccionarlos: `$.getJSON()`. El código que tenemos que escribir es el siguiente:
 
 ```javascript
@@ -161,63 +154,47 @@ Nothing changed from before at the top: we give it an API key, a query to perfor
 >
 > `var query = "https://rawgit.com/basilesimon/using-an-api-tutorial/master/cacheJSON.json";`
 
-# Challenge round!
+# Algunos ejercicios
 
-Here's three tasks to take this web page a step further. Answers are at the bottom of this page, but I'll give you a big hint: each of these requires no more than a single line of code to be changed.
+¿Quieres practicar? Aquí tienes algunas propuestas de ejercicios. Las soluciones están al final del documento, pero prueba primero por ti mismo, ¡es muy sencillo!
 
 ## Crea un titular enlazado a una url
 
 Wouldn't it be useful to be able to click through to each article? The URLs are returned in the API response - can you get those into the HTML?
 
 ## Cambia el término de búsqueda
-London is boring. So is the prime minister, but at least his name poses a challenge: that space in the URL will need encoding.
+¿Qué quieres buscar? Prueba a cambiar "Madrid" por algo más interesante.
 
 ## Busca artículos publicados antes de 2014
-The API request URL contains a query (`q=London`) and an API key (`apikey={apikey}`). But it can contain other things, too. Check [the API documentation](http://docs.bbcnewslabs.co.uk/Juicer-2.html) for additional parameters, including one that can limit the time period of returned articles.
+Hasta ahora hemos probado a hacer búsquedas sobre Madrid (`q=Madrid`) con la clave mencionada antes (`apikey={apikey}`). Pero podemos utilizar otras variables para filtrar los resultados. Consulta [la documentación de la API](http://docs.bbcnewslabs.co.uk/Juicer-2.html) para encontrar otros parámetos o variables.
 
-# Beyond this tutorial
-You pretty much know the basics right now, so here are a couple of things you could do to learn a bit more.
+# De aquí en adelante...
+Este es un tutorial de iniciaición con la API de la BBC, pero ¿qué puedes crear a partir de ahora?
+Un ejemplo es este [agregador de noticias](https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm?hl=en) creado para rastrear las intervenciones de los principales candidatos durante la campaña electoral del 20-D. Nos fue útil para rastrear todas las promesas que incluimos en [El Prometómetro](http://www.elconfidencial.com/elecciones-generales/2015-12-01/prometometro-promesas-elecciones-generales-20d_1107039/).
 
-#### Getting to know Juicer better with Postman
-You don't need much to talk to an API. Although some tools are nicer than the others.
-Have a look at [Google Chrome extension Postman](https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm?hl=en), which is a pretty tool to make requests clear to humans. Go ahead and install it!
+Échale imaginación. Ya sabes, para este tipo de proyectos lo mejor es echarle un vistazo a [la documentación](http://docs.bbcnewslabs.co.uk/Juicer-2.html)!
 
-You can them import the Juicer API using [this URL](https://www.getpostman.com/collections/cebe998a209d9862135b). This allows you to easily try out the API and explore how it works without writing any code.
+# Solución a los ejercicios anteriores
 
-You will need to configure an 'Environment' within Postman to be able to make cals:
+## Crea un titular enlazado a una url
 
-![environment](http://docs.bbcnewslabs.co.uk/img/juicer-postman.png)
-
-And you best ally is, as always, [the documentation](http://docs.bbcnewslabs.co.uk/Juicer-2.html)!
-
-### Want to code a bit more?
-Why not writing a [Google News](https://news.google.com/)-y kind of thing? If you've followed the tutorial, here's what you should do:
-
-* List the titles (as we did before)
-* Transform the list elements into links (`<a>` elements)
-* Change the source of the links to the corresponding URLs (tip: change `href`)
-
-# The answers
-
-## Make each headline hyperlinked
-
-Each item in the API response contains not only a `title`, but also a `url`. We can use it in a hyperlink like so:
+Parámetros que utilizaremos: `title` y `url`:
 
 ```js
 items.push( "<li><a href='" + val.url + "'>" + val.title + "</a></li>" );
 ```
 
-## Fetch articles on David Cameron instead of London
-We can switch out "London" for "David Cameron" easily enough, but that space will need encoding as `%20`.
+## Cambia el término de búsqueda
+Se puede cambiar el término de búsqueda de Madrid por otro de manera muy fácil. Si, por ejemplo, utilizamos David Cameron necesitamos incluir un espacio. Para ello utilizaremos la expresión `%20`.
 
 ```js
 var query = "http://juicer.api.bbci.co.uk/articles?q=David%20Cameron&apikey=" + apikey;
 ```
 
-## Fetch articles published before 2010
+## Busca artículos publicados antes de 2014
 
-We'll need to make use of the `published_before` URL parameter, as noted in the [API documentation](http://docs.bbcnewslabs.co.uk/Juicer-2.html), to achieve this:
+Utilizar el parámetro `published_before` en la URL como se menciona en la [API documentation](http://docs.bbcnewslabs.co.uk/Juicer-2.html):
 
 ```js
-var query = "http://juicer.api.bbci.co.uk/articles?q=London&published_before=2010-01-01T00:00:00.000Z&apikey=" + apikey;
+var query = "http://juicer.api.bbci.co.uk/articles?q=London&published_before=2014-01-01T00:00:00.000Z&apikey=" + apikey;
 ```
