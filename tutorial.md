@@ -33,16 +33,16 @@ Para obtener los datos de los que hablamos, tenemos que realizar una petición. 
 **La clave para este evento es `YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi`. Es temporal, en unos días dejará de funcionar. Sólo puede ser utilizada para tutoriales o investigaciones.**
 
 ### Posibles peticiones
-Try the following queries by opening the URLs in your browser (you'll need to paste in the API key at the very end):
+A continuación, puedes probar algunas consultas. Para ello, abre las siguientes URLs en tu navegador (acuérdate de incluir la clave API al final de dicha url):
 * Todas las fuentes que analiza la API de la BBC - http://juicer.api.bbci.co.uk/sources?api_key=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
 * Busca sólo contenido de la BBC - http://juicer.api.bbci.co.uk/articles?sources[]=1&api_key=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
 * Busca la palabra "London" en las noticias de la BBC - http://juicer.api.bbci.co.uk/articles?q=London&sources[]=1&api_key=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
-* Search for the word "London" in all BBC sources, faceted (filtered) by the concept "David Cameron" - http://juicer.api.bbci.co.uk/articles?q=London&sources[]=1&facets[]=http://dbpedia.org/resource/David_Cameron&api_key=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
-* Search for the word "London" in all BBC sources, faceted (filtered) by the concept "David Cameron", and show results in reverse chronological order - http://juicer.api.bbci.co.uk/articles?q=London&sources[]=1&facets[]=http://dbpedia.org/resource/David_Cameron&recent_first=true&api_key=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
+* Busca el término "London" en todas las fuentes que integra BBC Juicer, y fíltralo con "David Cameron" - http://juicer.api.bbci.co.uk/articles?q=London&sources[]=1&facets[]=http://dbpedia.org/resource/David_Cameron&api_key=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
+* Busca el término "London" en todas las fuentes que integra BBC Juicer, y fíltralo con "David Cameron". Muestra los resultados en orden cronológico inverso: 
+http://juicer.api.bbci.co.uk/articles?q=London&sources[]=1&facets[]=http://dbpedia.org/resource/David_Cameron&recent_first=true&api_key=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
 
 # Obtener una respuesta
-Una vez hayas realizado tu petición, el servidor responderá a ella. 
-After you've sent your query, the server will reply in a certain format. One of the most common is JSON (which stands for *JavaScript Obect Notation*). This format is very standard and easy to parse in any language, and though it can be a bit bigger than flat CSV datasets, it is quite good at expressing relationships and hierarchy. JSON is also the format returned by the Juicer, and thus the one that we will use for this tutorial.
+Una vez hayas realizado tu petición, el servidor responderá a ella en un formato determinado. El más común de ellos es JSON (*JavaScript Obect Notation*). Este formato es estándar y fácil de tratar en cualquier lenguaje de programación. Es un formato adecuado para expresar relaciones y jerarquías. JSON es el formato que utiliza the Juicer y que utilizaremos en este tutorial.
 
 # Cómo explotar los datos recibidos
 Ahora que tenemos una idea de cómo funciona Juicer API es hora de utilizar esos datos. Una de las formas más sencillas para visualizarlos es crear una página web.
@@ -123,7 +123,7 @@ Tan sólo tenemos que modificar el código que hemos escrito previamente en Java
 
           $( "<ul/>", {                 // Then, after the white line, we're grabbing the `<ul>` element in our HTML,
             html: items.join( "" )      // And saying that its HTML should be what's contained in `items`.
-          }).appendTo( "body" );        // Finally, we *append* these list elements to our HTML *body*.
+          }).appendTo( "body" );        // Finalmente, introducimos esta lista de elementos en nuestro *body* de HTML.
         });
     });
 ```
