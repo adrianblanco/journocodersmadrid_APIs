@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+  <html>
+
+    <head>
+      <meta charset="utf-8" />
+      <title>API with jQuery</title>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+	 </head>
+
+    <body>
+
+      <h2>Ejemplo</h2>
+
+      <button>Get JSON data</button>
+
+      <div>
+        <script>
+          // clave API
+          var apikey = "YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi";
+  		    // query o consulta que realizamos
+          var query = "http://juicer.api.bbci.co.uk/articles?q=Madrid&api_key=" + apikey;
+  		    // crea el botón
+          $("button").click(function(){
+  		    // extrae los datos de la query
+          $.getJSON(query, function(data){
+          // formatea los datos recicibidos. Solicita titular, url, fuente y descripción
+          var items = [];
+  		    $.each( data.hits, function( key, val ){
+          items.push( "<li><a href='" + val.url + "'>" + val.title + "</a></li>" + "<b>" + val.source ['source-name'] + "</b>" + " - " + val.description  );
+
+      		});
+      		$( "<ul/>", {
+      		html: items.join( "")
+      		}).appendTo( "body");
+            })
+          });
+          </script>
+      </div>
+
+    </body>
+
+  </html>
