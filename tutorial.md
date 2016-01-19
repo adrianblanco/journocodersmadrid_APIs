@@ -174,7 +174,7 @@ items.push( "<li><a href='" + val.url + "'>" + val.title + "</a></li>" );
 Se puede cambiar el término de búsqueda de Madrid por otro de manera muy fácil. Si, por ejemplo, utilizamos David Cameron necesitamos incluir un espacio. Para ello utilizaremos la expresión `%20`.
 
 ```js
-var query = "http://juicer.api.bbci.co.uk/articles?q=David%20Cameron&apikey=" + apikey;
+var query = "http://juicer.api.bbci.co.uk/articles?q=David%20Cameron&api_key=" + apikey;
 ```
 
 ## Busca artículos publicados antes de 2014
@@ -182,7 +182,7 @@ var query = "http://juicer.api.bbci.co.uk/articles?q=David%20Cameron&apikey=" + 
 Utilizar el parámetro `published_before` en la URL como se menciona en la [API documentation](http://docs.bbcnewslabs.co.uk/Juicer-2.html):
 
 ```js
-var query = "http://juicer.api.bbci.co.uk/articles?q=London&published_before=2014-01-01T00:00:00.000Z&apikey=" + apikey;
+var query = "http://juicer.api.bbci.co.uk/articles?q=London&published_before=2014-01-01T00:00:00.000Z&api_key=" + apikey;
 ```
 
 
