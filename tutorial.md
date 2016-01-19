@@ -139,14 +139,14 @@ No ha cambiado mucho con respecto al código que hemos abierto en la consola. Lo
 ¿Quieres practicar? Aquí tienes algunas propuestas de ejercicios. Las soluciones están al final del documento, pero prueba primero por ti mismo, ¡es muy sencillo!
 Ten presente la [documentación de The Juicer](http://docs.bbcnewslabs.co.uk/Juicer-2.html) para realizar estos ejercicios.
 
-## Crea un titular enlazado a una url
+### Crea un titular enlazado a una url
 
 ¿No crees que sería útil enlazar cada titular a su noticia? Prueba a hacerlo.
 
-## Cambia el término de búsqueda
+### Cambia el término de búsqueda
 ¿Qué quieres buscar? Prueba a cambiar "Madrid" por algo más interesante.
 
-## Busca artículos publicados antes de 2014
+### Busca artículos publicados antes de 2014
 Hasta ahora hemos probado a hacer búsquedas sobre Madrid (`q=Madrid`) con la clave mencionada antes (`apikey={apikey}`). Pero podemos utilizar otras variables para filtrar los resultados. Consulta [la documentación de la API](http://docs.bbcnewslabs.co.uk/Juicer-2.html) para encontrar otros parámetos o variables.
 
 # De aquí en adelante...
@@ -162,7 +162,7 @@ Nos fue útil para rastrear todas las promesas que incluimos en [El Prometómetr
 
 # Solución a los ejercicios anteriores
 
-## Crea un titular enlazado a una url
+### Crea un titular enlazado a una url
 
 Parámetros que utilizaremos: `title` y `url`:
 
@@ -170,14 +170,14 @@ Parámetros que utilizaremos: `title` y `url`:
 items.push( "<li><a href='" + val.url + "'>" + val.title + "</a></li>" );
 ```
 
-## Cambia el término de búsqueda
+### Cambia el término de búsqueda
 Se puede cambiar el término de búsqueda de Madrid por otro de manera muy fácil. Si, por ejemplo, utilizamos David Cameron necesitamos incluir un espacio. Para ello utilizaremos la expresión `%20`.
 
 ```js
 var query = "http://juicer.api.bbci.co.uk/articles?q=David%20Cameron&api_key=" + apikey;
 ```
 
-## Busca artículos publicados antes de 2014
+### Busca artículos publicados antes de 2014
 
 Utilizar el parámetro `published_before` en la URL como se menciona en la [API documentation](http://docs.bbcnewslabs.co.uk/Juicer-2.html):
 
