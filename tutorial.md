@@ -21,8 +21,6 @@ A menudo los proveedores de contenido ponen restricciones al uso de API por cues
 Para este tutorial vamos a utilizar *BBC linked data API*. Linked data hace referencia a las relaciones entre concreptos presentes en el contenido. Por ejemplo, un artículo que mencione a Barack Obama será considerao por el servicio como un artículo sobre Obama. 
 Esta API se llama "the Juicer" y es una de las APIs más sencillas de utilizar. Además tiene una aplicación periodística y puede ser utilizada para investigación. Ha sido desarrollado por BBC News Labs:
 
-![juicer](juicer.png)
-
 * The Juicer extrae noticias de la BBC y de más de 150 medios y los indexa en una base de datos guardando titular, autor, fuente, imágenes...
 * Además identifica algunos conceptos de las noticias como pueden ser sus diferentes partes, la fecha en la que fue publicada...
 * Esto permite obtener una información concreta y delimitada que puede ser utilizada para crear aplicaciones, obtener info filtrada o una información concreta.
