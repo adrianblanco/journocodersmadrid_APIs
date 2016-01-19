@@ -106,7 +106,7 @@ Tan sólo tenemos que modificar el código que hemos escrito previamente en Java
 
 ```javascript
     var apikey = ;
-    var query = "http://juicer.api.bbci.co.uk/articles?q=London&apikey=" + apikey;
+    var query = "http://juicer.api.bbci.co.uk/articles?q=London&api_key=" + apikey;
 
     $("button").click(function(){    
         $.getJSON( query, function( data ) {
