@@ -41,7 +41,6 @@ Try the following queries by opening the URLs in your browser (you'll need to pa
 * Busca la palabra "London" en las noticias de la BBC - http://juicer.api.bbci.co.uk/articles?q=London&sources[]=1&api_key=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
 * Search for the word "London" in all BBC sources, faceted (filtered) by the concept "David Cameron" - http://juicer.api.bbci.co.uk/articles?q=London&sources[]=1&facets[]=http://dbpedia.org/resource/David_Cameron&apikey=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
 * Search for the word "London" in all BBC sources, faceted (filtered) by the concept "David Cameron", and show results in reverse chronological order - http://juicer.api.bbci.co.uk/articles?q=London&sources[]=1&facets[]=http://dbpedia.org/resource/David_Cameron&recent_first=true&apikey=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
-* An article from the Juicer - http://juicer.api.bbci.co.uk/articles/4c3cfc0b24ba06bd204c6a24bd14e43bb006b0ea?api_key=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
 
 # Obtener una respuesta
 Una vez hayas realizado tu petición, el servidor responderá a ella. 
@@ -157,6 +156,7 @@ Un ejemplo es este [agregador de noticias](https://chrome.google.com/webstore/de
 
 ![art_bbcjuicer](art_publ_bbcjuicer.png)
 
+
 Nos fue útil para rastrear todas las promesas que incluimos en [El Prometómetro](http://www.elconfidencial.com/elecciones-generales/2015-12-01/prometometro-promesas-elecciones-generales-20d_1107039/). Puedes leer más info en el blog de [BBC News Labs](http://bbcnewslabs.co.uk/2015/12/15/eclabs-and-juicer/)
 
 Échale imaginación. Ya sabes, para este tipo de proyectos lo mejor es echarle un vistazo a [la documentación](http://docs.bbcnewslabs.co.uk/Juicer-2.html)!
@@ -187,6 +187,7 @@ var query = "http://juicer.api.bbci.co.uk/articles?q=London&published_before=201
 ```
 
 Otra opción mucho más sencilla, pero limitada, es ésta [interfaz](http://wat.bbcnewslabs.co.uk/) que ha creado BBC News Labs para acceder a la base de datos de The Juicer.
+
 
 
 ![juicer_interfaz](bbcjuicer_interfaz.png)
