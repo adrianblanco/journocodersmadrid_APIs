@@ -16,7 +16,7 @@ Una API es una herramienta para interactuar con proveedores de Internet. Se pued
 A menudo los proveedores de contenido ponen restricciones al uso de API por cuestiones de seguridad. Para ello, solicitan una clave para poder acceder al servicio de la API. También suelen existir restricciones para el número de veces que puedes utilizar una API por hora.
 
 # ¿Por qué la API de la BBC?
-Para este tutorial vamos a utulizar *BBC linked data API*. Linked data hace referencia a las relaciones entre concreptos presentes en el contenido. Por ejemplo, un artículo que mencione a Barack Obama será considerao por el servicio como un artículo sobre Obama. 
+Para este tutorial vamos a utilizar *BBC linked data API*. Linked data hace referencia a las relaciones entre concreptos presentes en el contenido. Por ejemplo, un artículo que mencione a Barack Obama será considerao por el servicio como un artículo sobre Obama. 
 Esta API se llama "the Juicer" y es una de las APIs más sencillas de utilizar. Además tiene una aplicación periodística y puede ser utilizada para investigación. Ha sido desarrollado por BBC News Labs:
 
 ![juicer](juicer.png)
@@ -79,15 +79,16 @@ En este esqueleto incluimos las etiquetas base de HTML y enlazamos a jQuery, una
 ```
 
 #### Realizar una petición
-To cut to the chase: jQuery es la librería que utilizaremos para obtener los datos estructurados en formato JSON de la API sin tener que parsearlos o diseccionarlos: `$.getJSON()`. El código que tenemos que escribir es el siguiente:
+jQuery es la librería que utilizaremos para obtener los datos estructurados en formato JSON de la API sin tener que parsearlos o diseccionarlos: `$.getJSON()`. El código que tenemos que escribir dentro de la etiqueta <script></script> es el siguiente:
 
 ```javascript
-    // Introduciremos la clave API
-    var apikey = ;
+    // Introduce la clave API dentro de las dos ''
+    var apikey = '';
 
     // La query o consulta que quieres realizar
-    var query = "http://juicer.api.bbci.co.uk/articles?q=London&apikey=" + apikey;
+    var query = "http://juicer.api.bbci.co.uk/articles?q=London&api_key=" + apikey;
 
+    // Crea el botón y las funciones que te permitirán obtener los datos
     $("button").click(function(){
       $.getJSON(query, function(data){
         console.log(data);
@@ -95,32 +96,14 @@ To cut to the chase: jQuery es la librería que utilizaremos para obtener los da
     });
 ```
 
-Abre `index.html` en tu navegador y abre las *Herramientas de desarrollo* o *Developer Tools* (`Shift + Ctrl + K` en Firefox, `Shift + Ctrl + J` en Chrome). Una vez hecho esto, pincha en el botón "Get Json Data".
+Una vez hayas unido el esqueleto HTML con el código javascript en tu editor de textos, guarda el archivo. Nómbralo, por ejemplo, `index.html`. Abre `index.html` en tu navegador y ve las *Herramientas de desarrollo* o *Developer Tools* (`Shift + Ctrl + K` en Firefox, `Shift + Ctrl + J` en Chrome). Otra opción es `botón derecho + Inspeccionar -> Console` Una vez hecho esto, pincha en el botón "Get Json Data".
 
-¡Ya puedes ver los datos!
+¡Puedes ver los datos `Object` en la consola!
 
-> **Note:** If you don't have an API key for the BBC API, use [this cached version](https://rawgit.com/basilesimon/using-an-api-tutorial/master/cacheJSON.json) instead.
->
-> So in the above example, you should use this line:
-> 
-> `var query = "https://rawgit.com/basilesimon/using-an-api-tutorial/master/cacheJSON.json";`
+#### Utiliza los datos para construir una web
+Hasta ahora, hemos obtenido los datos en la consola del navegador. ¿Por qué no tomamos ciertos parámetos de el JSON que recibimos y los publicamos en una web? 
 
-#### Using the request to build your web page
-Good, good. Now we've got some JSON back directly in the browser. What do you say we take parts of this JSON and injects it directly into our web page to create some content, eh?
-
-If you paid attention earlier, you know that we're querying to the Juicer a list of articles mentioning *"London"*. This JSON looks like this: 
-
-![json response](responseJSON.png)
-
-Now, some technicalities:
-
-* A JSON is made to be navigated in, hierarchically. In that case, we're going to want to target the `hits` group, and leave `aggregations` and `timeseries` alone. When we're into `hits`, we have a list (numbered from 0, as it is the norm in most programming languages). Into each element of this list, there's the information we will want to display: a *title*, a *url*, a *description*...
-* To access properties in the JSON, consider that the dot (`.`) expresses levels of hierarchy. Thus, considering that `data` is the variable representing your JSON, `data.subdata` is a sub-element of the JSON object. And `data.subdata.article` is a sub-element of `subdata`, which is itself a sub-element of the JSON object. Go deeper with dots.
-* In this particular case, if I want to access the `title` element, you might expect that we need to read (assuming that `data` represents the JSON object we queried) `data.hits.title`. *However, that won't work.*
-* This is because when you have a list, you need to say which element you want to read in the list (numbered from 0, remember). Thus, to read the first element (trust me on this one), you will want to read `data.hits[0].title`. Try to `console.log` this after your `getJSON`.
-* When you have several elements in a list, you can easily write loops to perform a single operation on each one, without having to write the instruction *x* times. That's one of the things that makes computers so good at repetitive tasks.
-
-Anyway, to the code:
+Tan sólo tenemos que modificar el código que hemos escrito previamente en Javascript. El código nuevo que utilizaremos es el siguiente (en los comentarios puedes ver paso por paso las instrucciones):
 
 ```javascript
     var apikey = ;
@@ -128,12 +111,12 @@ Anyway, to the code:
 
     $("button").click(function(){    
         $.getJSON( query, function( data ) {
-          var items = [];       // Tenemos que crear los `items`, which is an empty list. Rellenaremos este hueco con el contenido que queremos obtener de la página web.
+          var items = [];       // 1) Tenemos que crear los `items`, which is an empty list. Rellenaremos este hueco con el contenido que queremos obtener de la página web.
 
-          // Then, with `$.each()`, we're writing this loop to peform an operation on each element of `data.hits`.
+          // 2) Then, with `$.each()`, we're writing this loop to peform an operation on each element of `data.hits`.
           $.each( data.hits, function( key, val ) {     
 
-            // We are then *pushing* a piece of HTML to `items`, that we created earlier.
+            // 3) We are then *pushing* a piece of HTML to `items`, that we created earlier.
             // This piece of HTML contains a `<li>` element (a list item) which, look at this, has `val.title` for value.
             // `val.title`, I forgot to explain, represents `data.hits.title`, that's just a shortcut we declared.
             items.push( "<li>" + val.title + "</li>" );
@@ -146,15 +129,13 @@ Anyway, to the code:
     });
 ```
 
-Are you still here? Good. Refresh the page and click the button. Magic happened.
+Una vez hayas actualizado tu archivo `index.html`guárdalo. Ábrelo de nuevo en tu navegador y pulsa el botón GetJson. Espera unos segundos... ¡ahí está!
 
-Nothing changed from before at the top: we give it an API key, a query to perform with this API key, and we're using `getJSON()` to make the query.
+No ha cambiado mucho con respecto al código que hemos abierto en la consola. Lo único que esta vez vemos los artículos en nuestro navegador.
 
-> **Note:** Reminder that if you don't have an API key for the BBC API, use [this cached version](https://rawgit.com/basilesimon/using-an-api-tutorial/master/cacheJSON.json) instead. Like so:
->
-> `var query = "https://rawgit.com/basilesimon/using-an-api-tutorial/master/cacheJSON.json";`
+[Aquí] (https://github.com/adrianblanco/journocodersmadrid_APIs/blob/master/ejemplo_api.html) puedes acceder a un ejemplo completado.
 
-# Algunos ejercicios
+# Para saber más... algunos ejercicios
 
 ¿Quieres practicar? Aquí tienes algunas propuestas de ejercicios. Las soluciones están al final del documento, pero prueba primero por ti mismo, ¡es muy sencillo!
 
