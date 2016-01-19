@@ -37,8 +37,8 @@ Try the following queries by opening the URLs in your browser (you'll need to pa
 * Todas las fuentes que analiza la API de la BBC - http://juicer.api.bbci.co.uk/sources?api_key=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
 * Busca sólo contenido de la BBC - http://juicer.api.bbci.co.uk/articles?sources[]=1&api_key=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
 * Busca la palabra "London" en las noticias de la BBC - http://juicer.api.bbci.co.uk/articles?q=London&sources[]=1&api_key=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
-* Search for the word "London" in all BBC sources, faceted (filtered) by the concept "David Cameron" - http://juicer.api.bbci.co.uk/articles?q=London&sources[]=1&facets[]=http://dbpedia.org/resource/David_Cameron&apikey=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
-* Search for the word "London" in all BBC sources, faceted (filtered) by the concept "David Cameron", and show results in reverse chronological order - http://juicer.api.bbci.co.uk/articles?q=London&sources[]=1&facets[]=http://dbpedia.org/resource/David_Cameron&recent_first=true&apikey=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
+* Search for the word "London" in all BBC sources, faceted (filtered) by the concept "David Cameron" - http://juicer.api.bbci.co.uk/articles?q=London&sources[]=1&facets[]=http://dbpedia.org/resource/David_Cameron&api_key=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
+* Search for the word "London" in all BBC sources, faceted (filtered) by the concept "David Cameron", and show results in reverse chronological order - http://juicer.api.bbci.co.uk/articles?q=London&sources[]=1&facets[]=http://dbpedia.org/resource/David_Cameron&recent_first=true&api_key=YB0MY3VMHyllzPqEf5alVj5bUvGpvDVi
 
 # Obtener una respuesta
 Una vez hayas realizado tu petición, el servidor responderá a ella. 
