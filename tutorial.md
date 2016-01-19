@@ -84,7 +84,7 @@ jQuery es la librería que utilizaremos para obtener los datos estructurados en 
     // Introduce la clave API dentro de las dos ''
     var apikey = '';
 
-    // La query o consulta que quieres realizar
+    // Completa la query o consulta que quieres realizar
     var query = "http://juicer.api.bbci.co.uk/articles?q=London&api_key=" + apikey;
 
     // Crea el botón y las funciones que te permitirán obtener los datos
@@ -110,20 +110,20 @@ Tan sólo tenemos que modificar el código que hemos escrito previamente en Java
 
     $("button").click(function(){    
         $.getJSON( query, function( data ) {
-          var items = [];       // 1) Tenemos que crear los `items`, which is an empty list. Rellenaremos este hueco con el contenido que queremos obtener de la página web.
+          var items = [];       // 1) Creamos la variables `items`
 
-          // 2) Then, with `$.each()`, we're writing this loop to peform an operation on each element of `data.hits`.
+          // 2) Con `$.each()` creamos un loop que extraerá los datos necesarios de cada elemento alojado en `data.hits`.
           $.each( data.hits, function( key, val ) {     
 
-            // 3) We are then *pushing* a piece of HTML to `items`, that we created earlier.
-            // This piece of HTML contains a `<li>` element (a list item) which, look at this, has `val.title` for value.
-            // `val.title`, I forgot to explain, represents `data.hits.title`, that's just a shortcut we declared.
+            // 3) Empujamos o introducimos los items en unas etiquetas de lista de HTML que conforma nuestro index.html
+            // Este HTML continene una lista o elemento `<li>` en el que se integra el valor `val.title` o, dicho de otro modo, cado uno de los titulares de una noticia.
+            // `val.title`, representa `data.hits.title`. Puedes comprobarlo si acudes a la consola. Así es como está formateado el JSON
             items.push( "<li>" + val.title + "</li>" );
           });
 
-          $( "<ul/>", {                 // Then, after the white line, we're grabbing the `<ul>` element in our HTML,
-            html: items.join( "" )      // And saying that its HTML should be what's contained in `items`.
-          }).appendTo( "body" );        // Finalmente, introducimos esta lista de elementos en nuestro *body* de HTML.
+          $( "<ul/>", {                 // Introduce el elemento `<ul>` en el HTML
+            html: items.join( "" )      // Indica que este HTML mostrará los parámetros includios en `items`
+          }).appendTo( "body" );        // Finalmente, introducimos esta lista de elementos en nuestro *body* de HTML
         });
     });
 ```
@@ -137,10 +137,11 @@ No ha cambiado mucho con respecto al código que hemos abierto en la consola. Lo
 # Para saber más... algunos ejercicios
 
 ¿Quieres practicar? Aquí tienes algunas propuestas de ejercicios. Las soluciones están al final del documento, pero prueba primero por ti mismo, ¡es muy sencillo!
+Ten presente la [documentación de The Juicer](http://docs.bbcnewslabs.co.uk/Juicer-2.html) para realizar estos ejercicios.
 
 ## Crea un titular enlazado a una url
 
-Wouldn't it be useful to be able to click through to each article? The URLs are returned in the API response - can you get those into the HTML?
+¿No crees que sería útil enlazar cada titular a su noticia? Prueba a hacerlo.
 
 ## Cambia el término de búsqueda
 ¿Qué quieres buscar? Prueba a cambiar "Madrid" por algo más interesante.
